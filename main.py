@@ -58,6 +58,62 @@ def calculaMedia_get():
     elif(media >= 7):
         return "aprovado"
 
+@app.route('/atividade_17/1')
+def calculaMedia_get():
+    n1 = request.args.get('n1')
+    n2 = request.args.get('n2')
+    n3 = request.args.get('n3')
+    media = (n1 + n2 + n3)/3
+    
+    maior = n1
+    if(n2 > maior):
+        maior = n2
+    elif(n3 > maior):
+        maior = n3
+
+    menor = n1
+    if(n2 < menor):
+        menor = n2
+    elif(n3 < menor):
+        menor = n3
+
+    return "A media é: " + media + "; o maior numero é: " + maior + "; o menor numero é: " + menor
+
+@app.route('/atividade_17/2')
+def calculaImc_get():
+    peso = request.args.get('peso')
+    altura = request.args.get('altura')
+    imc = peso / altura**2
+    if(imc < 18.5 ):
+        return "abaixo do peso"
+    elif(imc >= 18.6 & imc < 24.9):
+        return "peso ideal"
+    elif(imc >= 25 & imc < 29.9):
+        return "levemente acima do peso"
+    elif(imc >= 30 & imc < 34.9):
+        return "Obesidade I"
+    elif(imc >= 35 & imc < 39.9):
+        return "Obesidade II"
+    elif(imc >= 40):
+        return "Obesidade III"
+
+@app.route('/atividade_18/2')
+def retornaPreco_get():
+    codigo = request.args.get('codigo')
+    if(codigo == 1 ):
+        return 99.99
+    elif(codigo == 2 ):
+        return 103.89
+    elif(codigo == 3 ):
+        return 49.98
+    elif(codigo == 4 ):
+        return 89.72
+    elif(codigo == 5 ):
+        return 97.35
+
+
+
+
 if __name__ == "__main__":
     app.run ()
 
